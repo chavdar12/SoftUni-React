@@ -1,0 +1,17 @@
+@import '../../../styles/theme';
+
+.product-card {
+  border: 0.1rem solid $color_white_ff;
+  border-radius: 2rem;
+  background-color: $color_white_ff;
+  max-width: 35rem;
+  margin: 0 auto;
+
+  &__wrapper {
+    padding: 2rem 2rem;
+  }
+
+  &__image {
+    width: 100%;
+  }
+}

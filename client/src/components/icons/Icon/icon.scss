@@ -1,0 +1,35 @@
+@import '../../../styles/theme';
+
+.icon {
+  &--xxs {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  &--xs {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  &--sm {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  &--md {
+    width: 2rem;
+    height: 2rem;
+  }
+  &--lg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  &--xl {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+  &--xxl {
+    width: 4rem;
+    height: 4rem;
+  }
+  &--clickable {
+    cursor: pointer;
+  }
+}

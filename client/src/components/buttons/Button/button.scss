@@ -1,0 +1,14 @@
+@import '../../../styles/theme';
+
+.button {
+  &__button {
+    max-width: 22rem;
+    min-height: 3.5rem;
+    flex-shrink: 0;
+    border-radius: 5rem;
+    border: none;
+    padding: 0.5rem 7rem;
+    background-color: $color_black_00;
+    color: $color_white_ff;
+  }
+}

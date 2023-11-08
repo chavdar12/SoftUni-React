@@ -1,0 +1,11 @@
+@import '../../../styles/theme';
+
+.box {
+  padding: 1.6rem;
+  box-shadow: $shadow_1;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: $color_white_ff;
+  text-align: left;
+  border: 1px solid red;
+}

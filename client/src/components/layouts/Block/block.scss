@@ -1,0 +1,27 @@
+@import '../../../styles/theme';
+
+.block {
+  padding: 0 1.6rem;
+  min-width: 32rem;
+  max-width: $screen-lg;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (min-width: $screen-md) {
+    width: calc(100% - 2 * 2rem);
+    padding: 0 2rem;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding: 0 6rem;
+    width: calc(100% - 2 * 6rem);
+  }
+
+  &__container {
+    max-width: $screen-xl;
+    min-width: calc(32rem - 2 * 1.6rem);
+    overflow: visible;
+    margin: 0 auto;
+  }
+}

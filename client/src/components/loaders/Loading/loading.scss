@@ -1,0 +1,19 @@
+@import '../../../styles/theme';
+
+.loading {
+  &--sm {
+    width: 2rem;
+  }
+
+  &--md {
+    width: 4rem;
+  }
+
+  &--lg {
+    width: 6rem;
+  }
+
+  &--xl {
+    width: 10rem;
+  }
+}
