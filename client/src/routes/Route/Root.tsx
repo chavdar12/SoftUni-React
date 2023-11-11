@@ -1,7 +1,14 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-import { ContactUsPage, LandingPage, LoginPage, RegisterPage, ShopPage } from '#pages';
+import {
+  AdminAddItemPage,
+  AdminDashboardPage,
+  LandingPage,
+  LoginPage,
+  NotFoundPage,
+  RegisterPage,
+} from "#pages";
 
 const RootContext = React.createContext({});
 
@@ -13,8 +20,9 @@ export function Root() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/contact" element={<ContactUsPage />} />
+        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+        <Route path="/admin-add-item" element={<AdminAddItemPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </RootContext.Provider>
   );

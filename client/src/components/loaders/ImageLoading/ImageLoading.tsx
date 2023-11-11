@@ -1,6 +1,6 @@
-import './image-loading.scss';
+import "./image-loading.scss";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 interface ImageLoadingProps {
   image?: string;
@@ -13,7 +13,11 @@ interface ImageLoadingProps {
  *
  * Image loading component
  */
-export function ImageLoading({ image, placeholder, classes }: ImageLoadingProps) {
+export function ImageLoading({
+  image,
+  placeholder,
+  classes,
+}: ImageLoadingProps) {
   const imgEl = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -23,19 +27,19 @@ export function ImageLoading({ image, placeholder, classes }: ImageLoadingProps)
     const imgElCurrent = imgEl.current;
 
     if (imgElCurrent) {
-      imgElCurrent.addEventListener('load', onImageLoaded);
-      return () => imgElCurrent.removeEventListener('load', onImageLoaded);
+      imgElCurrent.addEventListener("load", onImageLoaded);
+      return () => imgElCurrent.removeEventListener("load", onImageLoaded);
     }
 
     return () => {};
   }, [imgEl]);
 
   return (
-    <div className={['image-loading', classes].join(' ')}>
+    <div className={["image-loading", classes].join(" ")}>
       <img
         className="image-loading__img"
         src={loaded ? image || placeholder : placeholder}
-        alt={placeholder || 'image'}
+        alt={placeholder || "image"}
         ref={imgEl}
       />
     </div>

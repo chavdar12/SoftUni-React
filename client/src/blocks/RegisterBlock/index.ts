@@ -1,1 +1,1 @@
-export * from './RegisterBlock';
+export { default as RegisterBlock } from "./RegisterBlock";

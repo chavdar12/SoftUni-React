@@ -1,24 +1,24 @@
-import './App.scss';
+import "./App.scss";
 
-import { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { Root } from '#routes';
-import { ThemeContext } from '#utils';
+import { Root } from "#routes";
+import { ThemeContext } from "#utils";
 
 function App() {
   const { i18n } = useTranslation();
 
   const getDefaultTheme = useCallback(() => {
-    const localStorageTheme = localStorage.getItem('default-theme');
-    return localStorageTheme || 'light';
+    const localStorageTheme = localStorage.getItem("default-theme");
+    return localStorageTheme || "light";
   }, []);
 
   const [theme, setTheme] = useState(getDefaultTheme());
 
   useEffect(() => {
-    localStorage.setItem('default-theme', theme);
-    const language = localStorage.getItem('selectedLanguage');
+    localStorage.setItem("default-theme", theme);
+    const language = localStorage.getItem("selectedLanguage");
     if (language) {
       i18n.changeLanguage(language);
     }

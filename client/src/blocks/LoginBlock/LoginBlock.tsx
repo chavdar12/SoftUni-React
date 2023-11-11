@@ -1,15 +1,15 @@
-import './login-block.scss';
+import "./login-block.scss";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { z } from "zod";
 
-import { Block, Box, Button, FormInput, Grid, GridItem } from '#components';
-import { LoginFormSchema } from '#types';
+import { Block, Box, Button, Grid, GridItem, Input } from "#components";
+import { LoginFormSchema } from "#types";
 
-export function LoginBlock() {
-  const { t } = useTranslation('login-block');
+function LoginBlock() {
+  const { t } = useTranslation("login-block");
   const schema = LoginFormSchema(t);
   type types = z.infer<typeof schema>;
 
@@ -37,13 +37,25 @@ export function LoginBlock() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <Grid>
                 <GridItem md={8} lg={12}>
-                  <FormInput type="text" register={register('email')} errors={errors.email} />
+                  <Input
+                    type="text"
+                    register={register("email")}
+                    errors={errors.email}
+                  />
                 </GridItem>
                 <GridItem md={8} lg={12}>
-                  <FormInput type="text" register={register('password')} errors={errors.password} />
+                  <Input
+                    type="text"
+                    register={register("password")}
+                    errors={errors.password}
+                  />
                 </GridItem>
                 <GridItem md={8} lg={12}>
-                  <Button type="submit" disabled={isSubmitting} text={t('submit')} />
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    text={t("submit")}
+                  />
                 </GridItem>
               </Grid>
             </form>

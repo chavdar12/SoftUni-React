@@ -1,10 +1,8 @@
-import { LandingPageHero, Page } from '#blocks';
+import { Page } from "#blocks";
 
-export function LandingPage() {
-  return (
-    <Page>
-      <LandingPageHero />
-    </Page>
-  );
+function LandingPagePage() {
+  return <Page>
+    asdasd
+  </Page>;
 }
-export default LandingPage;
+export default LandingPagePage;

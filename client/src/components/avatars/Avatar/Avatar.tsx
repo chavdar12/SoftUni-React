@@ -1,4 +1,4 @@
-import './avatar.scss';
+import "./avatar.scss";
 
 interface AvatarProps {
   classes?: string;
@@ -7,7 +7,7 @@ interface AvatarProps {
 
 export function Avatar({ classes, image }: AvatarProps) {
   return (
-    <div className={['avatar', classes].join(' ')}>
+    <div className={["avatar", classes].join(" ")}>
       <img src={image} alt="avatar" />
     </div>
   );

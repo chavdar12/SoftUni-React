@@ -1,4 +1,4 @@
-import './grid.scss';
+import "./grid.scss";
 
 interface GridProps {
   classes?: string | string[];
@@ -11,7 +11,7 @@ interface GridProps {
  * Grid component
  */
 export function Grid({ classes, children }: GridProps) {
-  return <div className={['grid', classes].join(' ')}>{children}</div>;
+  return <div className={["grid", classes].join(" ")}>{children}</div>;
 }
 
 export default Grid;

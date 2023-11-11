@@ -1,14 +1,11 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import './navigation.scss';
+import "./navigation.scss";
 
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import { Login, Logo } from '#assets';
-import { Avatar, Icon } from '#components';
-import { SCREEN_LG, useWindowDimensions } from '#utils';
+import { SCREEN_MD, useWindowDimensions } from "#utils";
+import { Icon } from "#components";
+import { useState } from "react";
 
 type textsType = {
   key: string;
@@ -18,36 +15,42 @@ type textsType = {
 interface NavigationProps {
   classes?: string;
   texts?: textsType[];
+  isAdmin?: boolean;
   handleLanguageChange?: () => void;
 }
 
-export function Navigation({ classes, texts, handleLanguageChange }: NavigationProps) {
+export function Navigation({
+  classes,
+  texts,
+  isAdmin = false,
+  handleLanguageChange,
+}: NavigationProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { i18n } = useTranslation();
-  const { width } = useWindowDimensions();
   const navigate = useNavigate();
-  const activeText = texts?.find((text) => text.key === window.location.pathname.split('/')[1]);
+  const { width } = useWindowDimensions();
 
-  const renderTexts = () => {
-    return texts?.map((text, index) => (
+  return (
+    <div className={["navigation", classes].join(" ")}>
       <div
-        key={index}
-        className="navigation__content__texts__wrapper"
-        onClick={() => {
-          navigate(text.key);
-        }}
+        className={[
+          "navigation__wrapper",
+          isAdmin ? "" : "navigation__wrapper--user",
+        ].join(" ")}
       >
-        <h3
-          className={[
-            'navigation__content__texts__wrapper__text',
-            activeText?.key === text.key ? 'navigation__content__texts__wrapper__text--active' : '',
-          ].join(' ')}
-        >
-          {text.value}
-        </h3>
+        {width <= SCREEN_MD && (
+          <Icon
+            name="menu"
+            size="xl"
+            classes="navigation__wrapper__icon"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
+        )}
       </div>
-    ));
-  };
-
-  return <div className={['navigation', classes].join(' ')}></div>;
+      {width <= SCREEN_MD && isMenuOpen && (
+        <div className="navigation__mobile-menu">items</div>
+      )}
+    </div>
+  );
 }
 export default Navigation;

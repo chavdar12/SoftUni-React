@@ -25,7 +25,9 @@ class Color {
   }
 
   toString(): string {
-    return `rgb(${Math.round(this.r)}, ${Math.round(this.g)}, ${Math.round(this.b)})`;
+    return `rgb(${Math.round(this.r)}, ${Math.round(this.g)}, ${Math.round(
+      this.b,
+    )})`;
   }
 
   set(r: number, g: number, b: number): void {
@@ -96,9 +98,15 @@ class Color {
   }
 
   multiply(matrix: number[]): void {
-    const newR = this.clamp(this.r * matrix[0] + this.g * matrix[1] + this.b * matrix[2]);
-    const newG = this.clamp(this.r * matrix[3] + this.g * matrix[4] + this.b * matrix[5]);
-    const newB = this.clamp(this.r * matrix[6] + this.g * matrix[7] + this.b * matrix[8]);
+    const newR = this.clamp(
+      this.r * matrix[0] + this.g * matrix[1] + this.b * matrix[2],
+    );
+    const newG = this.clamp(
+      this.r * matrix[3] + this.g * matrix[4] + this.b * matrix[5],
+    );
+    const newB = this.clamp(
+      this.r * matrix[6] + this.g * matrix[7] + this.b * matrix[8],
+    );
     this.r = newR;
     this.g = newG;
     this.b = newB;
@@ -315,10 +323,11 @@ class Solver {
     function fmt(idx: number, multiplier = 1): number {
       return Math.round(filters[idx] * multiplier);
     }
-    return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(
-      3,
-      3.6,
-    )}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%);`;
+    return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(
+      2,
+    )}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(
+      5,
+    )}%);`;
   }
 }
 
@@ -331,7 +340,11 @@ function hexToRgb(hex: string): number[] | null {
 
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
-    ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+    ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16),
+      ]
     : null;
 }
 

@@ -1,15 +1,22 @@
-import './register-block.scss';
+import "./register-block.scss";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { z } from "zod";
 
-import { Block, Button, FormInput, Grid, GridItem, SuccessToast } from '#components';
-import { RegisterFormSchema } from '#types';
+import {
+  Block,
+  Button,
+  Grid,
+  GridItem,
+  Input,
+  SuccessToast,
+} from "#components";
+import { RegisterFormSchema } from "#types";
 
-export function RegisterBlock() {
-  const { t } = useTranslation('register-block');
+function RegisterBlock() {
+  const { t } = useTranslation("register-block");
   const schema = RegisterFormSchema(t);
   type types = z.infer<typeof schema>;
 
@@ -25,7 +32,7 @@ export function RegisterBlock() {
   const onSubmit: SubmitHandler<types> = async (data) => {
     if (isValid) {
       console.log(data);
-      SuccessToast({ text: 'Success' });
+      SuccessToast({ text: "Success" });
     }
     reset();
   };
@@ -35,20 +42,28 @@ export function RegisterBlock() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid>
           <GridItem md={8} lg={12}>
-            <FormInput type="text" register={register('email')} errors={errors.email} />
-          </GridItem>
-          <GridItem md={8} lg={12}>
-            <FormInput type="text" register={register('password')} errors={errors.password} />
-          </GridItem>
-          <GridItem md={8} lg={12}>
-            <FormInput
+            <Input
               type="text"
-              register={register('confirmPassword')}
+              register={register("email")}
+              errors={errors.email}
+            />
+          </GridItem>
+          <GridItem md={8} lg={12}>
+            <Input
+              type="text"
+              register={register("password")}
+              errors={errors.password}
+            />
+          </GridItem>
+          <GridItem md={8} lg={12}>
+            <Input
+              type="text"
+              register={register("confirmPassword")}
               errors={errors.confirmPassword}
             />
           </GridItem>
           <GridItem md={8} lg={12}>
-            <Button type="submit" disabled={isSubmitting} text={t('submit')} />
+            <Button type="submit" disabled={isSubmitting} text={t("submit")} />
           </GridItem>
         </Grid>
       </form>

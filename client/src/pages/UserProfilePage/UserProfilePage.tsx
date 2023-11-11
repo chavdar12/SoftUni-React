@@ -1,6 +1,5 @@
-import { Page } from '#blocks';
-
-export function UserProfilePage() {
-  return <Page>UserProfilePage</Page>;
+function UserProfilePage() {
+  return <div>UserProfilePage</div>;
 }
+
 export default UserProfilePage;

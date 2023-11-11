@@ -1,2 +1,2 @@
-export * from './ImageLoading';
-export * from './Loading';
+export * from "./ImageLoading";
+export * from "./Loading";

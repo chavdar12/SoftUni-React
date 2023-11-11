@@ -1,6 +1,6 @@
-import { Page, RegisterBlock } from '#blocks';
+import { Page, RegisterBlock } from "#blocks";
 
-export function RegisterPage() {
+function RegisterPage() {
   return (
     <Page hasFooter={false} hasNavigation={false}>
       <RegisterBlock />

@@ -1,11 +1,11 @@
-import './icon.scss';
+import "./icon.scss";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import sprite from './assets/sprite.svg';
-import { Color, hexToRgb, Solver } from './utils/ColorSolver';
+import sprite from "./assets/sprite.svg";
+import { Color, hexToRgb, Solver } from "./utils/ColorSolver";
 
-type TIconSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+type TIconSize = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 
 interface IIcon {
   name: string;
@@ -24,7 +24,7 @@ interface IIcon {
  */
 export function Icon({
   name,
-  size = 'md',
+  size = "md",
   color,
   classes,
   onClick,
@@ -42,7 +42,9 @@ export function Icon({
         const solver = new Solver(colorToSolve);
         const result = solver.solve();
         setSvgFilter(
-          `brightness(0) saturate(100%) ${result.filter.split('filter: ')[1].slice(0, -1)}`,
+          `brightness(0) saturate(100%) ${result.filter
+            .split("filter: ")[1]
+            .slice(0, -1)}`,
         );
       }
     }
@@ -54,10 +56,10 @@ export function Icon({
         `icon`,
         `icon--${name}`,
         `icon--${size}`,
-        onClick && 'icon--clickable',
+        onClick && "icon--clickable",
         classes,
-      ].join(' ')}
-      style={{ WebkitFilter: svgFilter || '' }}
+      ].join(" ")}
+      style={{ WebkitFilter: svgFilter || "" }}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

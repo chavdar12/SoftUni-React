@@ -1,6 +1,6 @@
-import { Page } from '#blocks';
+import { Page } from "#blocks";
 
-export function NotFoundPage() {
-  return <Page>NotFoundPage</Page>;
+function NotFoundPagePage() {
+  return <Page></Page>;
 }
-export default NotFoundPage;
+export default NotFoundPagePage;

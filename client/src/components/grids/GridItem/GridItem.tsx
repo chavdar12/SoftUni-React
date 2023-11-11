@@ -1,4 +1,4 @@
-import './grid-item.scss';
+import "./grid-item.scss";
 
 interface IGridItem {
   classes?: string | string[];
@@ -14,11 +14,18 @@ interface IGridItem {
  *
  * GridItem component
  */
-export function GridItem({ xs = 4, md = null, lg = null, children, onClick, classes }: IGridItem) {
+export function GridItem({
+  xs = 4,
+  md = null,
+  lg = null,
+  children,
+  onClick,
+  classes,
+}: IGridItem) {
   return (
     <div
       onClick={onClick}
-      className={['grid-item', `xs-${xs} md-${md} lg-${lg}`, classes].join(' ')}
+      className={["grid-item", `xs-${xs} md-${md} lg-${lg}`, classes].join(" ")}
     >
       {children}
     </div>

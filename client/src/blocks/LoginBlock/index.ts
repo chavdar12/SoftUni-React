@@ -1,1 +1,1 @@
-export * from './LoginBlock';
+export { default as LoginBlock } from "./LoginBlock";

@@ -1,4 +1,4 @@
-import './box.scss';
+import "./box.scss";
 
 interface BoxProps {
   classes?: string;
@@ -6,7 +6,7 @@ interface BoxProps {
 }
 
 export function Box({ classes, children }: BoxProps) {
-  return <div className={['box', classes].join(' ')}>{children}</div>;
+  return <div className={["box", classes].join(" ")}>{children}</div>;
 }
 
 export default Box;

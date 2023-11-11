@@ -1,6 +1,6 @@
-import { Page } from '#blocks';
+import { Page } from "#blocks";
 
-export function CartPage() {
-  return <Page>CartPage</Page>;
+function CartPagePage() {
+  return <Page></Page>;
 }
-export default CartPage;
+export default CartPagePage;

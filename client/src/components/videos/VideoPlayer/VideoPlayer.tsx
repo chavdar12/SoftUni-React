@@ -1,6 +1,6 @@
-import './video-player.scss';
+import "./video-player.scss";
 
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 
 interface IVideoPlayer {
   url?: string;
@@ -14,7 +14,7 @@ interface IVideoPlayer {
  */
 export function VideoPlayer({ url, classes }: IVideoPlayer) {
   return (
-    <div className={['video-player', classes].join(' ')}>
+    <div className={["video-player", classes].join(" ")}>
       <div className="video-player__player">
         <ReactPlayer width="100%" height="100%" url={url} />
       </div>

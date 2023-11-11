@@ -1,8 +1,8 @@
-import './login-page.scss';
+import "./login-page.scss";
 
-import { LoginBlock, Page } from '#blocks';
+import { LoginBlock, Page } from "#blocks";
 
-export function LoginPage() {
+function LoginPage() {
   return (
     <Page hasFooter={false} hasNavigation={false} classes="login-page">
       <LoginBlock />

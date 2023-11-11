@@ -1,64 +1,72 @@
-import './page.scss';
+import "./page.scss";
 
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
-import { Footer, Navigation } from '#components';
+import { Footer, Navigation } from "#components";
 
 interface PageProps {
   classes?: string;
   children?: React.ReactNode;
   hasNavigation?: boolean;
   hasFooter?: boolean;
+  isAdmin?: boolean;
 }
 
-export function Page({ classes, children, hasNavigation = true, hasFooter = true }: PageProps) {
-  const { t, i18n } = useTranslation('page-block');
+function Page({
+  classes,
+  children,
+  hasNavigation = true,
+  hasFooter = true,
+  isAdmin = false,
+}: PageProps) {
+  const { t, i18n } = useTranslation("page-block");
   const currentLanguage = i18n.language;
 
   const navigationTexts = [
     {
-      key: '/',
-      value: t('home'),
+      key: "/",
+      value: t("home"),
     },
     {
-      key: '/shop',
-      value: t('shop'),
+      key: "/shop",
+      value: t("shop"),
     },
     {
-      key: '/contact',
-      value: t('contact'),
+      key: "/contact",
+      value: t("contact"),
     },
   ];
 
   const footerTexts = [
     {
-      key: '/',
-      value: t('home'),
+      key: "/",
+      value: t("home"),
     },
     {
-      key: '/shop',
-      value: t('shop'),
+      key: "/shop",
+      value: t("shop"),
     },
     {
-      key: '/contact',
-      value: t('contact'),
+      key: "/contact",
+      value: t("contact"),
     },
   ];
 
   const handleLanguageChange = useCallback(() => {
-    const newLanguage = currentLanguage === 'en' ? 'bg' : 'en';
-    localStorage.setItem('selectedLanguage', newLanguage);
+    const newLanguage = currentLanguage === "en" ? "bg" : "en";
+    localStorage.setItem("selectedLanguage", newLanguage);
     i18n.changeLanguage(newLanguage);
   }, [currentLanguage, i18n]);
 
   return (
-    <div className={['page', classes].join(' ')}>
+    <div className={["page", classes].join(" ")}>
       {hasNavigation && (
         <Navigation
           classes="page__navigation"
           texts={navigationTexts}
           handleLanguageChange={handleLanguageChange}
+          isAdmin={isAdmin}
         />
       )}
       <div className="page__content-container">{children}</div>
