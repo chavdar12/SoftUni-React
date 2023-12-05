@@ -1,0 +1,12 @@
+@import "../../styles/theme";
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__content-container {
+    padding: 1.6rem 0;
+    flex-grow: 1;
+  }
+}
