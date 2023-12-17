@@ -3,7 +3,10 @@ import { z } from "zod";
 
 export function RegisterFormSchema(t: TFunction) {
   return z
+
     .object({
+      firstName: z.string().min(2, { message: t("firstName_error") }),
+      lastName: z.string().min(2, { message: t("lastName_error") }),
       email: z.string().email({ message: t("email_error") }),
       password: z.string().min(4, { message: t("password_error") }),
       confirmPassword: z.string().min(4, { message: t("password_error") }),

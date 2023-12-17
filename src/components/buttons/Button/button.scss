@@ -8,7 +8,22 @@
     border-radius: 5rem;
     border: none;
     padding: 0.5rem 7rem;
-    background-color: $color_black_00;
+    background-color: $color_blue_17;
     color: $color_white_ff;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color_blue_4d;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: $color_blue_21;
+      cursor: not-allowed;
+    }
   }
 }

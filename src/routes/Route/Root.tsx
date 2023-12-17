@@ -1,14 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-
-import {
-  AdminAddItemPage,
-  AdminDashboardPage,
-  LandingPage,
-  LoginPage,
-  NotFoundPage,
-  RegisterPage,
-} from "#pages";
+import { LoginPage, RegisterPage, LandingPage } from "#pages";
 
 const RootContext = React.createContext({});
 
@@ -17,12 +9,9 @@ export function Root() {
     <RootContext.Provider value={{}}>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
-        <Route path="/admin-add-item" element={<AdminAddItemPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </RootContext.Provider>
   );

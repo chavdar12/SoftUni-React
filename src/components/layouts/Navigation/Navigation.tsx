@@ -38,13 +38,42 @@ export function Navigation({
           isAdmin ? "" : "navigation__wrapper--user",
         ].join(" ")}
       >
-        {width <= SCREEN_MD && (
+        {width <= SCREEN_MD ? (
           <Icon
             name="menu"
-            size="xl"
+            size="lg"
             classes="navigation__wrapper__icon"
+            color="#ffffff"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           />
+        ) : (
+          <>
+            <Icon
+              name="menu"
+              size="lg"
+              classes="navigation__wrapper__icon"
+              color="#ffffff"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            />
+            <div className="navigation__wrapper__items">
+              {texts?.map((text) => (
+                <div
+                  key={text.key}
+                  className="navigation__wrapper__items__item"
+                  onClick={() => navigate(text.key)}
+                >
+                  {text.value}
+                </div>
+              ))}
+            </div>
+            <Icon
+              name="icon-profile"
+              size="lg"
+              classes="navigation__wrapper__user-profile"
+              color="#ffffff"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            />
+          </>
         )}
       </div>
       {width <= SCREEN_MD && isMenuOpen && (

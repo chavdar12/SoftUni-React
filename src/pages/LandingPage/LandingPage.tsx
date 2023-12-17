@@ -1,8 +1,7 @@
 import { Page } from "#blocks";
 
-function LandingPagePage() {
-  return <Page>
-    asdasd
-  </Page>;
+function LandingPage() {
+  return <Page></Page>;
 }
-export default LandingPagePage;
+
+export default LandingPage;

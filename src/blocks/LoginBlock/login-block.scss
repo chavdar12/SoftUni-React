@@ -1,4 +1,9 @@
 @import "../../styles/theme";
 
 .login-block {
+  width: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

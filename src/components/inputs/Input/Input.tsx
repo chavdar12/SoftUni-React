@@ -8,13 +8,21 @@ interface FormInputProps {
   classes?: string;
   register?: UseFormRegisterReturn;
   errors?: FieldError;
+  label: string;
   type?: string;
 }
 
-export function Input({ classes, register, errors, type }: FormInputProps) {
+export function Input({
+  classes,
+  register,
+  errors,
+  type,
+  label,
+}: FormInputProps) {
   return (
     <div className={["input", classes].join(" ")}>
-      <input type={type} className="input__input" {...register} />
+      <label className="input__label">{label}</label>
+      <input type={type} className="input__field" {...register} />
       {errors && <CustomError classes="input__error" text={errors.message} />}
     </div>
   );

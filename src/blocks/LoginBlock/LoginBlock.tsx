@@ -33,33 +33,33 @@ function LoginBlock() {
     <Block classes="login-block">
       <Grid>
         <GridItem md={8} lg={12}>
-          <Box>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Grid>
-                <GridItem md={8} lg={12}>
-                  <Input
-                    type="text"
-                    register={register("email")}
-                    errors={errors.email}
-                  />
-                </GridItem>
-                <GridItem md={8} lg={12}>
-                  <Input
-                    type="text"
-                    register={register("password")}
-                    errors={errors.password}
-                  />
-                </GridItem>
-                <GridItem md={8} lg={12}>
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    text={t("submit")}
-                  />
-                </GridItem>
-              </Grid>
-            </form>
-          </Box>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid>
+              <GridItem md={8} lg={12}>
+                <Input
+                  label={t("email")}
+                  type="text"
+                  register={register("email")}
+                  errors={errors.email}
+                />
+              </GridItem>
+              <GridItem md={8} lg={12}>
+                <Input
+                  label={t("password")}
+                  type="password"
+                  register={register("password")}
+                  errors={errors.password}
+                />
+              </GridItem>
+              <GridItem md={8} lg={12}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  text={t("submit")}
+                />
+              </GridItem>
+            </Grid>
+          </form>
         </GridItem>
       </Grid>
     </Block>

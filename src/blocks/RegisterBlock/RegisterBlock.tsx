@@ -1,18 +1,12 @@
 import "./register-block.scss";
-
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-import {
-  Block,
-  Button,
-  Grid,
-  GridItem,
-  Input,
-  SuccessToast,
-} from "#components";
+import { Block, Button, Grid, GridItem, Input } from "#components";
 import { RegisterFormSchema } from "#types";
 
 function RegisterBlock() {
@@ -31,18 +25,41 @@ function RegisterBlock() {
 
   const onSubmit: SubmitHandler<types> = async (data) => {
     if (isValid) {
-      console.log(data);
-      SuccessToast({ text: "Success" });
+      try {
+        await createUserWithEmailAndPassword(auth, data.email, data.password);
+        await updateProfile(auth.currentUser!, {
+          displayName: `${data.firstName} ${data.lastName}`,
+        });
+        reset();
+      } catch (error) {
+        console.log(error);
+      }
     }
     reset();
   };
-
   return (
     <Block classes="register-block">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid>
+        <Grid classes="register-blocks__form">
           <GridItem md={8} lg={12}>
             <Input
+              label={t("first_name")}
+              type="text"
+              register={register("firstName")}
+              errors={errors.firstName}
+            />
+          </GridItem>
+          <GridItem md={8} lg={12}>
+            <Input
+              label={t("last_name")}
+              type="text"
+              register={register("lastName")}
+              errors={errors.lastName}
+            />
+          </GridItem>
+          <GridItem md={8} lg={12}>
+            <Input
+              label={t("email")}
               type="text"
               register={register("email")}
               errors={errors.email}
@@ -50,6 +67,7 @@ function RegisterBlock() {
           </GridItem>
           <GridItem md={8} lg={12}>
             <Input
+              label={t("password")}
               type="text"
               register={register("password")}
               errors={errors.password}
@@ -57,6 +75,7 @@ function RegisterBlock() {
           </GridItem>
           <GridItem md={8} lg={12}>
             <Input
+              label={t("confirm_password")}
               type="text"
               register={register("confirmPassword")}
               errors={errors.confirmPassword}
