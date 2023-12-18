@@ -1,4 +1,4 @@
-import "./form-input.scss";
+import "./input.scss";
 
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 

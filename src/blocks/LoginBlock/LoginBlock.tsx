@@ -10,12 +10,14 @@ import { LoginFormSchema } from "#types";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "#utils";
 
 function LoginBlock() {
   const { t } = useTranslation("login-block");
   const schema = LoginFormSchema(t);
   type types = z.infer<typeof schema>;
   const navigate = useNavigate();
+  const { setUser } = useAuth();
 
   const {
     register,
@@ -29,6 +31,7 @@ function LoginBlock() {
   const onSubmit: SubmitHandler<types> = async (data: types) => {
     if (isValid) {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      setUser(auth.currentUser);
       navigate("/");
     }
     reset();

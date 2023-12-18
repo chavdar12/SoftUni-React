@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Root } from "#routes";
-import { ThemeContext } from "#utils";
+import { AuthProvider, ThemeContext } from "#utils";
 
 function App() {
   const { i18n } = useTranslation();
@@ -24,11 +24,13 @@ function App() {
     }
   }, [i18n, theme]);
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={`theme-${theme}`}>
-        <Root />
-      </div>
-    </ThemeContext.Provider>
+    <AuthProvider>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <div className={`theme-${theme}`}>
+          <Root />
+        </div>
+      </ThemeContext.Provider>
+    </AuthProvider>
   );
 }
 

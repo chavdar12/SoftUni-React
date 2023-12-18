@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./navigation.scss";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { SCREEN_MD, useWindowDimensions } from "#utils";
+import { SCREEN_MD, useAuth, useWindowDimensions } from "#utils";
 import { Icon } from "#components";
 
 type TextsType = {
@@ -15,9 +15,7 @@ interface NavigationProps {
   texts?: TextsType[];
   isAdmin?: boolean;
   dropdownTexts?: TextsType[];
-  handleSignOut?: () => void;
   handleLanguageChange?: () => void;
-  hasUser?: boolean;
 }
 
 export function Navigation({
@@ -26,8 +24,6 @@ export function Navigation({
   isAdmin = false,
   dropdownTexts,
   handleLanguageChange,
-  handleSignOut,
-  hasUser = false,
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
@@ -35,6 +31,7 @@ export function Navigation({
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const userProfileRef = useRef<HTMLDivElement | null>(null);
+  const { logout, user } = useAuth();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -119,12 +116,12 @@ export function Navigation({
                         <div
                           key={text.key}
                           className="navigation__wrapper__user-profile__container__items__item-wrapper"
-                          onClick={handleSignOut}
+                          onClick={logout}
                         >
                           {text.value}
                         </div>
                       );
-                    } else if (hasUser) {
+                    } else if (user !== null && text.key === "/profile") {
                       return (
                         <div
                           key={text.key}

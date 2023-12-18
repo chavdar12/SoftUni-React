@@ -44,3 +44,14 @@ export function ChangePasswordFormSchema(t: TFunction) {
     confirmNewPassword: z.string().min(4, { message: t("password_error") }),
   });
 }
+
+export function UserProfileSchema(t: TFunction) {
+  return z.object({
+    firstName: z.string().min(2, { message: t("firstName_error") }),
+    lastName: z.string().min(2, { message: t("lastName_error") }),
+    birthdate: z.string().min(2, { message: t("birthdate_error") }),
+    address: z.string().min(10, { message: t("address_error") }),
+    city: z.string().min(2, { message: t("city_error") }),
+    phone: z.string().min(10, { message: t("phone_error") }),
+  });
+}

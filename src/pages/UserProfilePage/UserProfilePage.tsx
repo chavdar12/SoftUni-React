@@ -1,7 +1,11 @@
-import { Page } from "#blocks";
+import { Page, UserProfileBlock } from "#blocks";
 
 function UserProfilePage() {
-  return <Page></Page>;
+  return (
+    <Page>
+      <UserProfileBlock />
+    </Page>
+  );
 }
 
 export default UserProfilePage;
