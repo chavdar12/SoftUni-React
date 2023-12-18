@@ -29,7 +29,8 @@
       "#utils": ["./src/utils"],
       "#blocks-locales": ["./src/blocks/locales"],
       "#types": ["./src/types"],
-      "#assets": ["./src/assets"]
+      "#assets": ["./src/assets"],
+      "#hooks": ["./src/hooks"]
     }
   },
   "include": ["src"],

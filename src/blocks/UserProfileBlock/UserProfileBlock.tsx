@@ -1,21 +1,26 @@
-// UserProfileBlock.tsx
-import React, { useState } from "react";
-import { Block, Box, Grid, GridItem, Input } from "#components";
+import React, { useEffect, useState } from "react";
+import { Block, Box, Button, Grid, GridItem, Input } from "#components";
 import "./user-profile.scss";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
 import { useAuth } from "#utils";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { UserProfileSchema } from "#types";
+import {
+  useGetUserProfile,
+  useImageUpload,
+  useUpdateUserProfile,
+} from "#hooks";
 
 function UserProfileBlock() {
-  const [image, setImage] = useState<File | null>(null);
-  const [uploading, setUploading] = useState<boolean>(false);
-  const { user } = useAuth();
   const { t } = useTranslation("user-profile-block");
+  const [image, setImage] = useState<File | null>(null);
+  const { user } = useAuth();
+
+  const userProfile = useGetUserProfile(user?.uid || "");
+  const { uploadImage, uploading } = useImageUpload();
+  const updateUserProfile = useUpdateUserProfile();
 
   const schema = UserProfileSchema(t);
 
@@ -24,23 +29,6 @@ function UserProfileBlock() {
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setImage(event.target.files[0]);
-    }
-  };
-
-  const handleUpload = async () => {
-    if (image && user) {
-      const imageRef = ref(storage, `profile/${user.uid}/${image.name}`);
-      setUploading(true);
-
-      try {
-        const snapshot = await uploadBytes(imageRef, image);
-        const url = await getDownloadURL(snapshot.ref);
-        console.log("Uploaded a blob or file!", url);
-      } catch (error) {
-        console.error("Error uploading file", error);
-      }
-
-      setUploading(false);
     }
   };
 
@@ -54,10 +42,26 @@ function UserProfileBlock() {
   });
 
   const onSubmit: SubmitHandler<types> = async (data: types) => {
-    if (isValid) {
-      console.log("data", data);
+    if (isValid && user) {
+      updateUserProfile(user.uid, data);
+      if (image) {
+        await uploadImage(image, user.uid);
+      }
     }
     reset();
+  };
+
+  useEffect(() => {
+    if (userProfile) {
+      reset(userProfile);
+    }
+  }, [reset, userProfile]);
+
+  const handleUpload = async () => {
+    if (image && user) {
+      const url = await uploadImage(image, user.uid);
+      console.log("Uploaded a blob or file!", url);
+    }
   };
 
   return (
@@ -77,6 +81,7 @@ function UserProfileBlock() {
               <Grid>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("first_name")}
                     type="text"
                     register={register("firstName")}
@@ -85,6 +90,7 @@ function UserProfileBlock() {
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("last_name")}
                     type="text"
                     register={register("lastName")}
@@ -93,6 +99,7 @@ function UserProfileBlock() {
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("birthday")}
                     type="text"
                     register={register("birthdate")}
@@ -101,14 +108,16 @@ function UserProfileBlock() {
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
-                    label={t("phone")}
+                    size="full"
+                    label={t("phone_number")}
                     type="text"
-                    register={register("phone")}
-                    errors={errors.phone}
+                    register={register("phone_number")}
+                    errors={errors.phone_number}
                   />
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("address")}
                     type="text"
                     register={register("address")}
@@ -117,10 +126,18 @@ function UserProfileBlock() {
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("city")}
                     type="text"
                     register={register("city")}
                     errors={errors.city}
+                  />
+                </GridItem>
+                <GridItem md={8} lg={12} classes="user-profile-block__button">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    text={t("submit")}
                   />
                 </GridItem>
               </Grid>

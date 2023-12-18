@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import "./button.scss";
 
 interface ButtonProps {
@@ -6,6 +7,9 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   text?: string;
+  children?: ReactNode;
+  size?: "xs" | "sm" | "md" | "lg";
+  loading?: boolean;
 }
 
 export function Button({
@@ -14,18 +18,18 @@ export function Button({
   onClick,
   disabled = false,
   text,
+  size = "sm",
+  loading = false,
 }: ButtonProps) {
   return (
-    <div className={["button", classes].join(" ")}>
-      <button
-        type={type}
-        onClick={onClick}
-        disabled={disabled}
-        className="button__button"
-      >
-        <p className="button__text">{text}</p>
-      </button>
-    </div>
+    <button
+      className={["button", `button--${size}`, classes].join(" ")}
+      onClick={disabled || loading ? () => {} : onClick}
+      disabled={disabled || loading}
+      type={type}
+    >
+      <div className="button__content-container">{text}</div>
+    </button>
   );
 }
 export default Button;

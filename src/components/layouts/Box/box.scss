@@ -2,10 +2,16 @@
 
 .box {
   padding: 1.6rem;
-  box-shadow: $shadow_1;
+  box-shadow: $shadow_2;
   border-radius: 1rem;
   overflow: hidden;
   background-color: $color_white_ff;
   text-align: left;
   border: 1px solid $color_blue_17;
+
+  &__heading {
+    margin-bottom: 1.6rem;
+    font-weight: $font_semi_bold;
+    color: $color_blue_17;
+  }
 }

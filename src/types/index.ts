@@ -11,4 +11,15 @@ export interface Product {
   photos: string[];
 }
 
+export interface User {
+  address?: string;
+  birthdate?: string;
+  city?: string;
+  first_name: string;
+  last_name: string;
+  phone_number?: string;
+  user_id: string;
+  photo_url?: string;
+}
+
 export * from "./zodTypes";

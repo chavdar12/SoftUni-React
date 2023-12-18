@@ -1,29 +1,81 @@
 @import "../../../styles/theme";
 
 .button {
-  &__button {
-    max-width: 22rem;
-    min-height: 3.5rem;
-    flex-shrink: 0;
-    border-radius: 5rem;
-    border: none;
-    padding: 0.5rem 7rem;
+  border: 0.1rem solid transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: $color_white_ff;
+  font-size: $font_size_1_6;
+  font-weight: $font_semi_bold;
+  line-height: 140%;
+  text-align: center;
+  display: block;
+  width: auto;
+  padding-left: 2.2rem;
+  padding-right: 2.2rem;
+  white-space: nowrap;
+  background-color: $color_blue_21;
+
+  &:hover:enabled {
+    background-color: $color_blue_4d;
+  }
+
+  &:active:enabled {
     background-color: $color_blue_17;
-    color: $color_white_ff;
-    transition: all 0.2s ease-in-out;
+  }
 
-    &:hover {
-      cursor: pointer;
-      background-color: $color_blue_4d;
-    }
+  &:disabled {
+    opacity: 0.4;
+  }
 
-    &:focus {
-      outline: none;
-    }
+  &__content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &:disabled {
-      background-color: $color_blue_21;
-      cursor: not-allowed;
+  //Sizes
+  &--xs {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.4rem;
+    width: Min(100%, 11.3rem);
+    font-size: $font_size_1_4;
+
+    &.btn--border-radius {
+      border-radius: 4.2rem;
     }
+  }
+
+  &--sm {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    font-size: $font_size_1_4;
+    font-weight: $font_bold;
+    width: Min(100%, 19.3rem);
+
+    &.btn--border-radius {
+      border-radius: 10rem;
+    }
+  }
+
+  &--md {
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    font-size: $font_size_1_8;
+    font-weight: $font_medium;
+    width: Min(100%, 31.5rem);
+
+    &.btn--border-radius {
+      border-radius: 10rem;
+    }
+  }
+
+  &--lg {
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    font-size: $font_size_1_8;
+    font-weight: $font_medium;
+    width: Min(100%, 44.8rem);
   }
 }

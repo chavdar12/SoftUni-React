@@ -1,10 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 const __dirname = process.env.PROJECT_DIR || ".";
-
-
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +17,7 @@ export default defineConfig({
       "#blocks-locales": path.resolve(__dirname, "./src/blocks/locales"),
       "#types": path.resolve(__dirname, "./src/types"),
       "#assets": path.resolve(__dirname, "./src/assets"),
+      "#hooks": path.resolve(__dirname, "./src/hooks"),
     },
   },
 });

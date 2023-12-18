@@ -1,1 +1,7 @@
 @import "../../../styles/theme";
+
+.custom-error {
+  &__text {
+    color: $color_red_ff4;
+  }
+}

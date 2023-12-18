@@ -1,5 +1,8 @@
 @import "../../styles/theme";
 
-.user-profile-block{
-    
+.user-profile-block {
+  &__button {
+    display: flex;
+    justify-content: center;
+  }
 }

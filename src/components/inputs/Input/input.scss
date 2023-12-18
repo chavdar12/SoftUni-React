@@ -1,34 +1,97 @@
 @import "../../../styles/theme";
 
-.input {
-  &__field {
-    height: 4rem;
-    border: 1px solid $color_blue_4d;
-    border-radius: 1rem;
-    padding: 0 1.5rem;
-    color: $color_black_00;
-    transition: border-color 0.2s;
+.input-container {
+  text-align: left;
 
-    &:focus {
-      outline: none;
-      border-color: $color_blue_17;
+  &--full {
+    width: 100%;
+  }
+
+  &--hr {
+    width: 100%;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+  }
+
+  &--sm {
+    @media screen and (min-width: $screen-md) {
+      max-width: 33.5rem;
     }
   }
 
-  &__error {
-    color: $color_red_ff1;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-left: 1rem;
+  &--md {
+    @media screen and (min-width: $screen-md) {
+      max-width: 47.2rem;
+    }
+  }
+
+  &--lg {
+    @media screen and (min-width: $screen-lg) {
+      max-width: 61rem;
+    }
   }
 
   &__label {
+    display: block;
+    font-weight: $font_bold;
+    margin-bottom: 0.1rem;
+    color: $color_blue_17;
+  }
+
+  .input-wrapper {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-left: 1rem;
-    margin-bottom: 0.5rem;
-    color: $color_blue_21;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $color_blue_21;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    padding-right: 0.8rem;
+
+    .input {
+      width: 100%;
+      border: 0;
+      color: $color_black_00;
+      font-family: $font_family;
+      font-size: $font_size_1_6;
+      line-height: $line_height_1_5;
+      padding: 1.2rem 1.2rem 1.2rem 0.8rem;
+      background: transparent;
+
+      &:hover,
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        font-size: $font_size_1_4;
+        font-weight: 500;
+        color: $color_black_00;
+      }
+    }
+
+    &:hover:not(&.error):has(input:enabled),
+    &:not(&.error):has(input:focus-within:enabled) {
+      border: 1px solid $color_blue_17;
+    }
+
+    &.error {
+      border: 0.1rem solid $color_red_ff1;
+    }
+
+    & .error {
+      padding: 0;
+    }
+  }
+
+  &--border-radius {
+    & .input-wrapper {
+      border-radius: 1rem;
+
+      & .input {
+        padding: 1.2rem 2rem;
+      }
+    }
   }
 }

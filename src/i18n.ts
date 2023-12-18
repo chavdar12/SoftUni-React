@@ -5,6 +5,7 @@ import {
   LoginBlockLocales,
   PageBlockLocales,
   RegisterBlockLocales,
+  UserProfileBlockLocales,
 } from "#blocks-locales";
 
 const resources = {
@@ -12,11 +13,13 @@ const resources = {
     "page-block": PageBlockLocales.bg,
     "login-block": LoginBlockLocales.bg,
     "register-block": RegisterBlockLocales.bg,
+    "user-profile-block": UserProfileBlockLocales.bg,
   },
   en: {
     "page-block": PageBlockLocales.en,
     "login-block": LoginBlockLocales.en,
     "register-block": RegisterBlockLocales.en,
+    "user-profile-block": UserProfileBlockLocales.en,
   },
 };
 

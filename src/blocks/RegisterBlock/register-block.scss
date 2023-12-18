@@ -1,13 +1,10 @@
 @import "../../styles/theme";
 
 .register-block {
-  width: 100vh;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 
-  &__form {
-    background-color: red;
+  &__button {
+    display: flex;
+    justify-content: center;
   }
 }

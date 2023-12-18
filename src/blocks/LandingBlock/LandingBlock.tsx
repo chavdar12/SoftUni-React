@@ -1,30 +1,11 @@
-import { useEffect, useState } from "react";
-import { db } from "../../firebase";
-import { collection, getDocs, query } from "firebase/firestore";
-import { Product } from "#types";
-
-const fetchProducts = async (): Promise<Product[]> => {
-  const productsCol = collection(db, "Product");
-  const q = query(productsCol);
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => ({
-    ...(doc.data() as Product),
-  }));
-};
+import { useGetProducts } from "#hooks";
 
 function LandingBlock() {
-  const [products, setProducts] = useState<Product[]>([]);
-  console.log(products);
-  
+  const { products, loading } = useGetProducts();
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const fetchedProducts = await fetchProducts();
-      setProducts(fetchedProducts);
-    };
-
-    getProducts();
-  }, []);
+  if (loading) {
+    return <div>Loading products...</div>;
+  }
 
   return (
     <div>

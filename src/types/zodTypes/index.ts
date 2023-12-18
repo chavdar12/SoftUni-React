@@ -52,6 +52,6 @@ export function UserProfileSchema(t: TFunction) {
     birthdate: z.string().min(2, { message: t("birthdate_error") }),
     address: z.string().min(10, { message: t("address_error") }),
     city: z.string().min(2, { message: t("city_error") }),
-    phone: z.string().min(10, { message: t("phone_error") }),
+    phone_number: z.string().min(10, { message: t("phone_error") }),
   });
 }
