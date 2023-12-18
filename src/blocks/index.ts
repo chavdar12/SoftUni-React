@@ -7,3 +7,5 @@ export * from "./CartBlock";
 export * from "./CheckoutBlock";
 export * from "./AdminDashboardBlock";
 export * from "./LandingBlock";
+export * from "./ProductBlock";
+export * from "./ShopBlock";

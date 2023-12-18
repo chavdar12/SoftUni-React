@@ -1,0 +1,24 @@
+@import "../../styles/theme";
+
+.shop-block {
+  &__chip-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    &__item {
+      border: 0.1rem solid $color_blue_17;
+      padding: 1rem;
+      border-radius: 1rem;
+      font-weight: $font_medium;
+      cursor: pointer;
+
+      &--selected {
+        background-color: $color_blue_17;
+        color: $color_white_ff;
+      }
+    }
+  }
+}

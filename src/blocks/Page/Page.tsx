@@ -27,16 +27,8 @@ function Page({
 
   const navigationTexts = [
     {
-      key: "/",
-      value: t("home"),
-    },
-    {
       key: "/shop",
       value: t("shop"),
-    },
-    {
-      key: "/contact",
-      value: t("contact"),
     },
   ];
 

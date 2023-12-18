@@ -6,6 +6,9 @@ import {
   LandingPage,
   UserProfilePage,
   AddProductPage,
+  ProductPage,
+  CartPage,
+  ShopPage
 } from "#pages";
 
 const RootContext = React.createContext({});
@@ -19,6 +22,9 @@ export function Root() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/add-product" element={<AddProductPage />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/shop" element={<ShopPage />} />
         <Route path="/" element={<LandingPage />} />
       </Routes>
     </RootContext.Provider>

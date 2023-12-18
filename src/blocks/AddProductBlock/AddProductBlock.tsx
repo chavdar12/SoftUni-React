@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 import { Product, ProductSchema } from "#types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useUploadProduct } from "#hooks";
+import { useGetCategories, useUploadProduct } from "#hooks";
 import { useAuth } from "#utils";
 
 function AddProductBlock() {
@@ -27,6 +27,9 @@ function AddProductBlock() {
   const [images, setImages] = useState<ImageListType>([]);
   const { uploadProduct, error } = useUploadProduct();
   const { user } = useAuth();
+  const { categories } = useGetCategories();
+
+  console.log(categories);
 
   const {
     register,

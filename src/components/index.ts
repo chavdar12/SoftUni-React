@@ -7,3 +7,4 @@ export * from "./icons";
 export * from "./inputs";
 export * from "./layouts";
 export * from "./loaders";
+export * from "./carousels";

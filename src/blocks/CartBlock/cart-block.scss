@@ -1,0 +1,8 @@
+@import "../../styles/theme";
+
+.cart-block {
+  &__button {
+    display: flex;
+    justify-content: center;
+  }
+}

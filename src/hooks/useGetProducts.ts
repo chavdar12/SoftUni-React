@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, query, getDocs } from "firebase/firestore";
-import { db } from "../firebase"; // Adjust the import path as needed
-import { Product } from "#types"; // Adjust the import path as needed
+import { db } from "../firebase";
+import { Product } from "#types";
 
 const useGetProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,6 +15,7 @@ const useGetProducts = () => {
         const querySnapshot = await getDocs(q);
 
         const fetchedProducts: Product[] = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
           ...(doc.data() as Product),
         }));
 

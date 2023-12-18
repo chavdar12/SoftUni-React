@@ -3,7 +3,7 @@ import "./navigation.scss";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { SCREEN_MD, useAuth, useCart, useWindowDimensions } from "#utils";
-import { Icon } from "#components";
+import { Button, Icon } from "#components";
 
 type TextsType = {
   key: string;
@@ -33,7 +33,7 @@ export function Navigation({
   const { width } = useWindowDimensions();
   const userProfileRef = useRef<HTMLDivElement | null>(null);
   const { logout, user } = useAuth();
-  const { items, addItem, removeItem, clearCart } = useCart();
+  const { items } = useCart();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -111,7 +111,46 @@ export function Navigation({
                     : "",
                 ].join(" ")}
               >
-                open cart
+                {items.length > 0 ? (
+                  <>
+                    <div className="navigation__wrapper__cart__container__items">
+                      {items.map((item) => (
+                        <div
+                          key={item.product.id}
+                          className="navigation__wrapper__cart__container__items__item"
+                          onClick={() => {
+                            navigate(`/product/${item.product.id}`);
+                            setIsCartOpen(false);
+                          }}
+                        >
+                          <img
+                            src={item.product.photos![0]}
+                            alt={item.product.name}
+                            className="navigation__wrapper__cart__container__items__item__image"
+                          />
+                          <div>
+                            <h3>{item.product.name}</h3>
+                            <p>{item.product.price}</p>
+                          </div>
+                        </div>
+                      ))}
+
+                      <Button
+                        classes="navigation__wrapper__cart__container__items__button"
+                        text="Go to cart"
+                        size="xs"
+                        onClick={() => {
+                          navigate("/cart");
+                          setIsCartOpen(false);
+                        }}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <p className="navigation__wrapper__cart__container__empty">
+                    Your cart is empty
+                  </p>
+                )}
               </div>
             </div>
             <Icon

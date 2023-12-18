@@ -1,4 +1,5 @@
 export interface Product {
+  id?: string;
   price: string;
   created_at?: string;
   category: string;
@@ -19,6 +20,11 @@ export interface User {
   phone_number?: string;
   user_id: string;
   photo_url?: string;
+}
+
+export interface Category {
+  key: string;
+  name: string;
 }
 
 export * from "./zodTypes";
