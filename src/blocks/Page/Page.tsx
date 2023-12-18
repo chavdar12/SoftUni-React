@@ -3,6 +3,9 @@ import "./page.scss";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+
 import { Footer, Navigation } from "#components";
 
 interface PageProps {
@@ -22,6 +25,9 @@ function Page({
 }: PageProps) {
   const { t, i18n } = useTranslation("page-block");
   const currentLanguage = i18n.language;
+  const hasUser = auth.currentUser;
+  console.log(hasUser);
+  
 
   const navigationTexts = [
     {
@@ -53,6 +59,10 @@ function Page({
     },
   ];
 
+  const handleSignOut = async () => {
+    await signOut(auth);
+  };
+
   const handleLanguageChange = useCallback(() => {
     const newLanguage = currentLanguage === "en" ? "bg" : "en";
     localStorage.setItem("selectedLanguage", newLanguage);
@@ -67,6 +77,31 @@ function Page({
           texts={navigationTexts}
           handleLanguageChange={handleLanguageChange}
           isAdmin={isAdmin}
+          dropdownTexts={
+            hasUser !== null
+              ? [
+                  {
+                    key: "/profile",
+                    value: t("profile"),
+                  },
+                  {
+                    key: "/logout",
+                    value: t("logout"),
+                  },
+                ]
+              : [
+                  {
+                    key: "/login",
+                    value: t("login"),
+                  },
+                  {
+                    key: "/register",
+                    value: t("register"),
+                  },
+                ]
+          }
+          handleSignOut={handleSignOut}
+          hasUser={hasUser !== null}
         />
       )}
       <div className="page__content-container">{children}</div>

@@ -7,11 +7,15 @@ import { z } from "zod";
 
 import { Block, Box, Button, Grid, GridItem, Input } from "#components";
 import { LoginFormSchema } from "#types";
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function LoginBlock() {
   const { t } = useTranslation("login-block");
   const schema = LoginFormSchema(t);
   type types = z.infer<typeof schema>;
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,7 +28,8 @@ function LoginBlock() {
 
   const onSubmit: SubmitHandler<types> = async (data: types) => {
     if (isValid) {
-      console.log(data);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      navigate("/");
     }
     reset();
   };

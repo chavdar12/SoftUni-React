@@ -8,11 +8,13 @@ import { z } from "zod";
 
 import { Block, Button, Grid, GridItem, Input } from "#components";
 import { RegisterFormSchema } from "#types";
+import { useNavigate } from "react-router-dom";
 
 function RegisterBlock() {
   const { t } = useTranslation("register-block");
   const schema = RegisterFormSchema(t);
   type types = z.infer<typeof schema>;
+  const navigate = useNavigate();
 
   const {
     register,
@@ -31,6 +33,7 @@ function RegisterBlock() {
           displayName: `${data.firstName} ${data.lastName}`,
         });
         reset();
+        navigate("/");
       } catch (error) {
         console.log(error);
       }
