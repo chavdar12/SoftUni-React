@@ -29,7 +29,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addItem = (item: CartItem) => {
     setItems((prevItems) => {
-      // Add logic to combine items or increase quantity if item already exists
       return [...prevItems, item];
     });
   };

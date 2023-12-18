@@ -1,7 +1,11 @@
-import { Page } from "#blocks";
+import { LandingBlock, Page } from "#blocks";
 
 function LandingPage() {
-  return <Page></Page>;
+  return (
+    <Page>
+      <LandingBlock />
+    </Page>
+  );
 }
 
 export default LandingPage;
