@@ -7,44 +7,65 @@ import {
   Input,
   TextArea,
 } from "#components";
-import { storage } from "../../firebase";
 import ImageUploading, { ImageListType } from "react-images-uploading";
+import { z } from "zod";
 
 import "./add-product.scss";
 import { useState } from "react";
-import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 import { useTranslation } from "react-i18next";
+import { Product, ProductSchema } from "#types";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useUploadProduct } from "#hooks";
+import { useAuth } from "#utils";
 
 function AddProductBlock() {
   const { t } = useTranslation("add-product-block");
+  const schema = ProductSchema(t);
+  type types = z.infer<typeof schema>;
   const maxNumber = 10;
-
   const [images, setImages] = useState<ImageListType>([]);
+  const { uploadProduct, error } = useUploadProduct();
+  const { user } = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+    reset,
+  } = useForm<types>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<types> = async (data: types) => {
+    if (isValid) {
+      const product: Product = {
+        ...data,
+        photos: images.map((image) => image.data_url),
+        user_id: user?.uid,
+      };
+
+      const imageFiles = images
+        .map((image) => image.file)
+        .filter((file): file is File => !!file);
+      await uploadProduct(product, imageFiles);
+      if (!error) {
+        reset();
+        setImages([]);
+      } else {
+        console.error(error);
+      }
+    }
+    reset();
+  };
 
   const onChange = (imageList: ImageListType) => {
     setImages(imageList);
   };
 
-  const uploadImages = async () => {
-    const imageUrls: string[] = [];
-
-    for (const image of images) {
-      if (!image.file) continue;
-
-      const uniqueName = `images/${Date.now()}-${Math.random()
-        .toString(36)
-        .slice(2, 11)}-${image.file.name}`;
-      const storageRef = ref(storage, uniqueName);
-
-      const snapshot = await uploadBytes(storageRef, image.file);
-      const url = await getDownloadURL(snapshot.ref);
-      imageUrls.push(url);
-    }
-  };
-
   return (
     <Block classes="add-product-block">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid>
           <GridItem md={8} lg={12}>
             <Box>
@@ -118,14 +139,14 @@ function AddProductBlock() {
                             classes="add-product-block__button"
                           />
                         </GridItem>
-                        <GridItem md={3} lg={4}>
+                        {/* <GridItem md={3} lg={4}>
                           <Button
                             type="button"
                             onClick={uploadImages}
                             text={t("upload_all")}
                             classes="add-product-block__button"
                           />
-                        </GridItem>
+                        </GridItem> */}
                       </Grid>
                     </GridItem>
                   </Grid>
@@ -137,22 +158,46 @@ function AddProductBlock() {
             <Box>
               <Grid>
                 <GridItem md={4} lg={6}>
-                  <Input label={t("name")} />
+                  <Input
+                    label={t("name")}
+                    register={register("name")}
+                    errors={errors.name}
+                  />
                 </GridItem>
                 <GridItem md={4} lg={6}>
-                  <Input label={t("price")} />
+                  <Input
+                    label={t("price")}
+                    register={register("price")}
+                    errors={errors.price}
+                  />
                 </GridItem>
                 <GridItem md={4} lg={6}>
-                  <Input label={t("size")} />
+                  <Input
+                    label={t("quantity")}
+                    register={register("quantity")}
+                    errors={errors.quantity}
+                  />
                 </GridItem>
                 <GridItem md={4} lg={6}>
-                  <Input label={t("category")} />
+                  <Input
+                    label={t("category")}
+                    register={register("category")}
+                    errors={errors.category}
+                  />
                 </GridItem>
                 <GridItem md={8} lg={12}>
-                  <TextArea label={t("description")} />
+                  <TextArea
+                    label={t("description")}
+                    register={register("description")}
+                    errors={errors.description}
+                  />
                 </GridItem>
                 <GridItem md={8} lg={12}>
-                  <Button type="submit" text={t("submit")} />
+                  <Button
+                    type="submit"
+                    text={t("submit")}
+                    disabled={isSubmitting}
+                  />
                 </GridItem>
               </Grid>
             </Box>

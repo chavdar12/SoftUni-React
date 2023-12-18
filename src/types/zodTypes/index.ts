@@ -55,3 +55,13 @@ export function UserProfileSchema(t: TFunction) {
     phone_number: z.string().min(10, { message: t("phone_error") }),
   });
 }
+
+export function ProductSchema(t: TFunction) {
+  return z.object({
+    name: z.string().min(2, { message: t("name_error") }),
+    description: z.string().min(10, { message: t("description_error") }),
+    price: z.string().min(0, { message: t("price_error") }),
+    quantity: z.string().min(0, { message: t("quantity_error") }),
+    category: z.string().min(2, { message: t("category_error") }),
+  });
+}
