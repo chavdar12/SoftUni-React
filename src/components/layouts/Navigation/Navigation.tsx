@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./navigation.scss";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { SCREEN_MD, useAuth, useWindowDimensions } from "#utils";
+import { SCREEN_MD, useAuth, useCart, useWindowDimensions } from "#utils";
 import { Icon } from "#components";
 
 type TextsType = {
@@ -26,12 +26,14 @@ export function Navigation({
   handleLanguageChange,
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const userProfileRef = useRef<HTMLDivElement | null>(null);
   const { logout, user } = useAuth();
+  const { items, addItem, removeItem, clearCart } = useCart();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -87,16 +89,36 @@ export function Navigation({
                 ))}
               </div>
             </div>
-            <Icon
-              name="cart"
-              size="xl"
-              color="#ffffff"
-              classes="navigation__wrapper__language"
-            />
+            <div className="navigation__wrapper__cart">
+              <Icon
+                name="cart"
+                size="xl"
+                color="#ffffff"
+                classes="navigation__wrapper__cart__icon"
+                onClick={() => setIsCartOpen(!isCartOpen)}
+              />
+              {items.length > 0 && (
+                <span className="navigation__wrapper__cart__count">
+                  {items.length}
+                </span>
+              )}
+
+              <div
+                className={[
+                  "navigation__wrapper__cart__container",
+                  isCartOpen
+                    ? "navigation__wrapper__cart__container--open"
+                    : "",
+                ].join(" ")}
+              >
+                open cart
+              </div>
+            </div>
             <Icon
               name={i18n.language === "en" ? "en" : "bg"}
               size="xl"
               onClick={handleLanguageChange}
+              classes="navigation__wrapper__language"
             />
             <div className="navigation__wrapper__user-profile">
               <Icon
