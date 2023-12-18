@@ -88,9 +88,14 @@ export function Navigation({
               </div>
             </div>
             <Icon
+              name="cart"
+              size="xl"
+              color="#ffffff"
+              classes="navigation__wrapper__language"
+            />
+            <Icon
               name={i18n.language === "en" ? "en" : "bg"}
               size="xl"
-              classes="navigation__wrapper__language"
               onClick={handleLanguageChange}
             />
             <div className="navigation__wrapper__user-profile">

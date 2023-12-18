@@ -8,35 +8,32 @@ import {
   TextArea,
 } from "#components";
 import { storage } from "../../firebase";
-import ImageUploading from "react-images-uploading";
+import ImageUploading, { ImageListType } from "react-images-uploading";
 
 import "./add-product.scss";
 import { useState } from "react";
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 import { useTranslation } from "react-i18next";
 
-interface ImageType {
-  data_url: string;
-  file: File;
-}
-
 function AddProductBlock() {
   const { t } = useTranslation("add-product-block");
   const maxNumber = 10;
 
-  const [images, setImages] = useState<ImageType[]>([]);
+  const [images, setImages] = useState<ImageListType>([]);
 
-  const onChange = (imageList: ImageType[]) => {
+  const onChange = (imageList: ImageListType) => {
     setImages(imageList);
   };
 
   const uploadImages = async () => {
-    const imageUrls = [];
+    const imageUrls: string[] = [];
 
     for (const image of images) {
+      if (!image.file) continue;
+
       const uniqueName = `images/${Date.now()}-${Math.random()
         .toString(36)
-        .slice(2, 9)}-${image.file.name}`;
+        .slice(2, 11)}-${image.file.name}`;
       const storageRef = ref(storage, uniqueName);
 
       const snapshot = await uploadBytes(storageRef, image.file);
