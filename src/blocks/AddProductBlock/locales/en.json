@@ -1,6 +1,18 @@
 {
-  "email": "Email",
-  "password": "Password",
-  "email_error": "Email is required",
-  "password_error": "Password is required"
+  "upload": "Upload",
+  "remove": "Remove",
+  "remove_all": "Remove all",
+  "name": "Name",
+  "price": "Price",
+  "quantity": "Quantity",
+  "category": "Category",
+  "description": "Description",
+  "submit": "Create",
+  "update": "Update",
+  "name_error": "Name is required",
+  "price_error": "Price is required",
+  "quantity_error": "Quantity is required",
+  "category_error": "Category is required",
+  "description_error": "Description is required",
+  "image_error": "Image is required"
 }

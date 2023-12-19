@@ -12,7 +12,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "#utils";
 
-function LoginBlock() {
+interface LoginBlockProps {
+  isAdminLogin?: boolean;
+}
+
+function LoginBlock({ isAdminLogin = false }: LoginBlockProps) {
   const { t } = useTranslation("login-block");
   const schema = LoginFormSchema(t);
   type types = z.infer<typeof schema>;
@@ -32,7 +36,9 @@ function LoginBlock() {
     if (isValid) {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       setUser(auth.currentUser);
-      navigate("/");
+      navigate(
+        isAdminLogin ? "/admin-dashboard" : auth.currentUser ? "/" : "/login"
+      );
     }
     reset();
   };

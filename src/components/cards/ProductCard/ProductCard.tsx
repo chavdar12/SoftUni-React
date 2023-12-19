@@ -5,13 +5,12 @@ import "./product-card.scss";
 interface ProductProps {
   product: Product;
   classes?: string;
+  onClick?: () => void;
 }
 
-function ProductCard({ product, classes }: ProductProps) {
-  console.log(product.id);
-
+function ProductCard({ product, classes, onClick }: ProductProps) {
   return (
-    <div className={["product-card", classes].join(" ")}>
+    <div className={["product-card", classes].join(" ")} onClick={onClick}>
       <Grid>
         <GridItem md={8} lg={12}>
           <Carousel

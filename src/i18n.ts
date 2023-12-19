@@ -6,6 +6,8 @@ import {
   PageBlockLocales,
   RegisterBlockLocales,
   UserProfileBlockLocales,
+  AddProductBlockLocales,
+  ProductBlockLocales,
 } from "#blocks-locales";
 
 const resources = {
@@ -14,12 +16,16 @@ const resources = {
     "login-block": LoginBlockLocales.bg,
     "register-block": RegisterBlockLocales.bg,
     "user-profile-block": UserProfileBlockLocales.bg,
+    "add-product-block": AddProductBlockLocales.bg,
+    "product-block": ProductBlockLocales.bg,
   },
   en: {
     "page-block": PageBlockLocales.en,
     "login-block": LoginBlockLocales.en,
     "register-block": RegisterBlockLocales.en,
     "user-profile-block": UserProfileBlockLocales.en,
+    "add-product-block": AddProductBlockLocales.en,
+    "product-block": ProductBlockLocales.en,
   },
 };
 

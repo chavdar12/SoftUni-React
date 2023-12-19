@@ -6,19 +6,22 @@
   justify-content: center;
 
   &__control {
-    background-color: #f0f0f0;
+    color: $color_black_00;
+    background-color: $color_blue_4d;
+    border-radius: 0.2rem;
     border: none;
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 2rem;
     &:hover {
-      background-color: #e0e0e0;
+      background-color: $color_blue_17;
+      color: $color_white_ff;
     }
   }
 
   &__value {
-    margin: 0 10px;
-    font-size: 1.2rem;
+    margin: 0 1rem;
+    font-size: 2rem;
   }
 }

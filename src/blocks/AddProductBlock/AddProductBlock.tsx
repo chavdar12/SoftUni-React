@@ -2,6 +2,7 @@ import {
   Block,
   Box,
   Button,
+  Dropdown,
   Grid,
   GridItem,
   Input,
@@ -29,8 +30,6 @@ function AddProductBlock() {
   const { user } = useAuth();
   const { categories } = useGetCategories();
 
-  console.log(categories);
-
   const {
     register,
     handleSubmit,
@@ -55,8 +54,6 @@ function AddProductBlock() {
       if (!error) {
         reset();
         setImages([]);
-      } else {
-        console.error(error);
       }
     }
     reset();
@@ -126,30 +123,28 @@ function AddProductBlock() {
                     ))}
                     <GridItem md={8} lg={12}>
                       <Grid>
-                        <GridItem md={3} lg={4}>
+                        <GridItem
+                          md={4}
+                          lg={6}
+                          classes="add-product-block__button"
+                        >
                           <Button
                             type="button"
                             onClick={onImageUpload}
                             text={t("upload")}
-                            classes="add-product-block__button"
                           />
                         </GridItem>
-                        <GridItem md={3} lg={4}>
+                        <GridItem
+                          md={4}
+                          lg={6}
+                          classes="add-product-block__button"
+                        >
                           <Button
                             type="button"
                             onClick={onImageRemoveAll}
                             text={t("remove_all")}
-                            classes="add-product-block__button"
                           />
                         </GridItem>
-                        {/* <GridItem md={3} lg={4}>
-                          <Button
-                            type="button"
-                            onClick={uploadImages}
-                            text={t("upload_all")}
-                            classes="add-product-block__button"
-                          />
-                        </GridItem> */}
                       </Grid>
                     </GridItem>
                   </Grid>
@@ -162,6 +157,7 @@ function AddProductBlock() {
               <Grid>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("name")}
                     register={register("name")}
                     errors={errors.name}
@@ -169,6 +165,7 @@ function AddProductBlock() {
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("price")}
                     register={register("price")}
                     errors={errors.price}
@@ -176,26 +173,34 @@ function AddProductBlock() {
                 </GridItem>
                 <GridItem md={4} lg={6}>
                   <Input
+                    size="full"
                     label={t("quantity")}
                     register={register("quantity")}
                     errors={errors.quantity}
                   />
                 </GridItem>
                 <GridItem md={4} lg={6}>
-                  <Input
+                  {/* <Input
+                    size="full"
                     label={t("category")}
+                    register={register("category")}
+                    errors={errors.category}
+                  /> */}
+                  <Dropdown
+                    label={t("category")}
+                    items={categories}
                     register={register("category")}
                     errors={errors.category}
                   />
                 </GridItem>
-                <GridItem md={8} lg={12}>
+                <GridItem md={8} lg={12} classes="add-product-block__text-area">
                   <TextArea
                     label={t("description")}
                     register={register("description")}
                     errors={errors.description}
                   />
                 </GridItem>
-                <GridItem md={8} lg={12}>
+                <GridItem md={8} lg={12} classes="add-product-block__button">
                   <Button
                     type="submit"
                     text={t("submit")}

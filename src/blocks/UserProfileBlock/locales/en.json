@@ -2,8 +2,17 @@
   "first_name": "First Name",
   "last_name": "Last Name",
   "birthday": "Birthdate",
-  "phone": "Phone",
+  "phone_number": "Phone",
   "address": "Address",
   "city": "City",
-  "submit": "Update"
+  "submit": "Update",
+  "firstName_error": "First name is required",
+  "lastName_error": "Last name is required",
+  "birthdate_error": "Birthdate is required",
+  "phone_error": "Phone is required",
+  "address_error": "Address is required",
+  "city_error": "City is required",
+  "update": "Update",
+  "remove": "Remove",
+  "upload": "Upload"
 }

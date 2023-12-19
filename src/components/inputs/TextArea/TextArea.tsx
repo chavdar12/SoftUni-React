@@ -8,6 +8,7 @@ interface TextAreaProps {
   placeholder?: string;
   register?: UseFormRegisterReturn;
   errors?: FieldError;
+  size?: "sm" | "md" | "lg";
 }
 
 function TextArea({
@@ -16,12 +17,22 @@ function TextArea({
   placeholder,
   register,
   errors,
+  size = "lg",
 }: TextAreaProps) {
   return (
-    <div className={["text-area", classes].join(" ")}>
-      <label className="text-area__label">{label}</label>
+    <div
+      className={[
+        "textarea-container",
+        `textarea-container--${size}`,
+        classes,
+      ].join(" ")}
+    >
+      <label className="textarea-container__label">{label}</label>
       <textarea
-        className="text-area__field"
+        className={[
+          "textarea-container__text-area",
+          errors?.message ? "error" : "",
+        ].join(" ")}
         placeholder={placeholder}
         {...register}
       />

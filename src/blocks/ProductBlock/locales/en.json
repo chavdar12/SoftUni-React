@@ -1,6 +1,7 @@
 {
-  "profile": "Profile",
-  "logout": "Logout",
-  "login": "Login",
-  "register": "Register"
+  "price": "Price",
+  "category": "Category",
+  "description": "Description",
+  "quantity": "Quantity in stock",
+  "add_cart": "Add to cart"
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Block, Box, Button, Grid, GridItem, Input } from "#components";
 import "./user-profile.scss";
 import { useAuth } from "#utils";
@@ -12,10 +12,12 @@ import {
   useImageUpload,
   useUpdateUserProfile,
 } from "#hooks";
+import ImageUploading, { ImageListType } from "react-images-uploading";
 
 function UserProfileBlock() {
   const { t } = useTranslation("user-profile-block");
-  const [image, setImage] = useState<File | null>(null);
+  const [images, setImages] = useState<ImageListType>([]);
+  const maxNumber = 1;
   const { user } = useAuth();
 
   const userProfile = useGetUserProfile(user?.uid || "");
@@ -25,12 +27,6 @@ function UserProfileBlock() {
   const schema = UserProfileSchema(t);
 
   type types = z.infer<typeof schema>;
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(event.target.files[0]);
-    }
-  };
 
   const {
     register,
@@ -43,10 +39,13 @@ function UserProfileBlock() {
 
   const onSubmit: SubmitHandler<types> = async (data: types) => {
     if (isValid && user) {
-      updateUserProfile(user.uid, data);
-      if (image) {
-        await uploadImage(image, user.uid);
+      let photoUrl = userProfile?.photo_url;
+      if (images.length > 0 && images[0].file) {
+        photoUrl = await uploadImage(images[0].file, user.uid);
       }
+
+      const updatedProfile = { ...data, photo_url: photoUrl };
+      updateUserProfile(updatedProfile);
     }
     reset();
   };
@@ -57,12 +56,18 @@ function UserProfileBlock() {
     }
   }, [reset, userProfile]);
 
-  const handleUpload = async () => {
-    if (image && user) {
-      const url = await uploadImage(image, user.uid);
-      console.log("Uploaded a blob or file!", url);
-    }
+  const onChange = (imageList: ImageListType) => {
+    setImages(imageList);
   };
+
+  useEffect(() => {
+    if (userProfile) {
+      reset(userProfile);
+      if (userProfile.photo_url) {
+        setImages([{ data_url: userProfile.photo_url }]);
+      }
+    }
+  }, [reset, userProfile]);
 
   return (
     <Block classes="user-profile-block">
@@ -70,10 +75,65 @@ function UserProfileBlock() {
         <Grid>
           <GridItem md={8} lg={12}>
             <Box>
-              <input type="file" onChange={handleImageChange} />
-              <button onClick={handleUpload} disabled={uploading}>
-                {uploading ? "Uploading..." : "Upload"}
-              </button>
+              <ImageUploading
+                multiple
+                value={images}
+                onChange={onChange}
+                maxNumber={maxNumber}
+                dataURLKey="data_url"
+              >
+                {({
+                  imageList,
+                  onImageUpload,
+                  onImageUpdate,
+                  onImageRemove,
+                }) => (
+                  <Grid>
+                    {imageList.map((image, index) => (
+                      <GridItem
+                        md={8}
+                        lg={12}
+                        key={index}
+                        classes={"user-profile-block__container"}
+                      >
+                        <Grid>
+                          <GridItem md={8} lg={12}>
+                            <img
+                              src={image["data_url"]}
+                              className="user-profile-block__image"
+                            />
+                          </GridItem>
+                          <GridItem md={4} lg={6}>
+                            <Button
+                              type="button"
+                              onClick={() => onImageUpdate(index)}
+                              text={t("update")}
+                            />
+                          </GridItem>
+                          <GridItem md={4} lg={6}>
+                            <Button
+                              type="button"
+                              onClick={() => onImageRemove(index)}
+                              text={t("remove")}
+                            />
+                          </GridItem>
+                        </Grid>
+                      </GridItem>
+                    ))}
+                    <GridItem
+                      md={8}
+                      lg={12}
+                      classes="user-profile-block__button"
+                    >
+                      <Button
+                        type="button"
+                        onClick={onImageUpload}
+                        text={t("upload")}
+                      />
+                    </GridItem>
+                  </Grid>
+                )}
+              </ImageUploading>
             </Box>
           </GridItem>
           <GridItem md={8} lg={12}>

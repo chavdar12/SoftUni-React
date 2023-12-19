@@ -1,0 +1,6 @@
+{
+  "email": "Email",
+  "password": "Password",
+  "email_error": "Email is required",
+  "password_error": "Password is required"
+}

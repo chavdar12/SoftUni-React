@@ -5,3 +5,5 @@ export { default as useGetProducts } from "./useGetProducts";
 export { default as useUploadProduct } from "./useUploadProduct";
 export { default as useGetCategories } from "./useGetCategories";
 export { default as useGetProductById } from "./useGetProductById";
+export { default as useUserRole } from "./useUserRole";
+export { default as useGetAllUsers } from "./useGetAllUsers";

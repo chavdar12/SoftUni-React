@@ -9,3 +9,4 @@ export * from "./AdminDashboardBlock";
 export * from "./LandingBlock";
 export * from "./ProductBlock";
 export * from "./ShopBlock";
+export * from "./AdminUsersBlock";

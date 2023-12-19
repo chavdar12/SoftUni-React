@@ -38,7 +38,6 @@ function RegisterBlock() {
           data.password
         );
         const user = userCredential.user;
-        setUser(user);
 
         await updateProfile(user, {
           displayName: `${data.firstName} ${data.lastName}`,
@@ -48,7 +47,7 @@ function RegisterBlock() {
           first_name: data.firstName,
           last_name: data.lastName,
         });
-
+        setUser(auth.currentUser);
         reset();
         navigate("/");
       } catch (error) {

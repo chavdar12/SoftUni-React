@@ -4,7 +4,7 @@ export interface Product {
   created_at?: string;
   category: string;
   description: string;
-  quantity: string;
+  quantity: number;
   user_id?: string;
   name: string;
   updated_at?: string;
@@ -25,6 +25,9 @@ export interface User {
 export interface Category {
   key: string;
   name: string;
+}
+export interface UserProfile {
+  role: "admin" | "user";
 }
 
 export * from "./zodTypes";

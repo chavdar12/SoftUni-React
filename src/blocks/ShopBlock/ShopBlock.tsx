@@ -1,12 +1,15 @@
-import { Block, Box, Grid, GridItem } from "#components";
-import { useGetCategories } from "#hooks";
+import { Block, Box, Grid, GridItem, ProductCard } from "#components";
+import { useGetCategories, useGetProducts } from "#hooks";
 import { useMemo, useState } from "react";
 import "./shop-block.scss";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 function ShopBlock() {
   const { categories } = useGetCategories();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const { t } = useTranslation("shop-block");
+  const { products, loading } = useGetProducts();
+  const navigate = useNavigate();
 
   const handleCategorySelect = (categoryKey: string) => {
     setSelectedCategories((prevSelectedCategories) => {
@@ -21,6 +24,16 @@ function ShopBlock() {
   const sortedCategories = useMemo(() => {
     return categories.sort((a, b) => a.name.localeCompare(b.name));
   }, [categories]);
+
+  const filteredProducts = useMemo(() => {
+    if (selectedCategories.length === 0) {
+      return products;
+    }
+
+    return products.filter((product) =>
+      selectedCategories.includes(product.category)
+    );
+  }, [products, selectedCategories]);
 
   return (
     <Block classes="shop-block">
@@ -43,6 +56,22 @@ function ShopBlock() {
                 </div>
               ))}
             </div>
+          </Box>
+        </GridItem>
+        <GridItem md={8} lg={12}>
+          <Box heading={t("products")}>
+            <Grid>
+              {filteredProducts.map((product) => (
+                <GridItem md={4} lg={4} key={product.id}>
+                  <ProductCard
+                    product={product}
+                    onClick={() => {
+                      navigate(`/product/${encodeURIComponent(product.id!)}`);
+                    }}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
           </Box>
         </GridItem>
       </Grid>

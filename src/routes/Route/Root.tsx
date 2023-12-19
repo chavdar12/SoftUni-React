@@ -8,7 +8,10 @@ import {
   AddProductPage,
   ProductPage,
   CartPage,
-  ShopPage
+  ShopPage,
+  AdminDashboardPage,
+  AdminLoginPage,
+  AdminUsersPage,
 } from "#pages";
 
 const RootContext = React.createContext({});
@@ -21,11 +24,30 @@ export function Root() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/add-product" element={<AddProductPage />} />
+        <Route
+          path="/add-product"
+          // element={
+          //   <ProtectedRoute allowedRoles={["admin"]}>
+          //     <AdminDashboardPage />
+          //   </ProtectedRoute>
+          // }
+          element={<AddProductPage />}
+        />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/admin-dashboard"
+          // element={
+          //   <ProtectedRoute allowedRoles={["admin"]}>
+          //     <AdminDashboardPage />
+          //   </ProtectedRoute>
+          // }
+          element={<AdminDashboardPage />}
+        />
+        <Route path="/admin" element={<AdminLoginPage />} />
+        <Route path="/admin-users" element={<AdminUsersPage />} />
       </Routes>
     </RootContext.Provider>
   );
