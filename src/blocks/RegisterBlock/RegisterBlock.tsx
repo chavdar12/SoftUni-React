@@ -43,7 +43,7 @@ function RegisterBlock() {
           displayName: `${data.firstName} ${data.lastName}`,
         });
 
-        await updateUserProfile(user.uid, {
+        await updateUserProfile({
           first_name: data.firstName,
           last_name: data.lastName,
         });
@@ -90,7 +90,7 @@ function RegisterBlock() {
                 <GridItem md={8} lg={12}>
                   <Input
                     label={t("password")}
-                    type="text"
+                    type="password"
                     register={register("password")}
                     errors={errors.password}
                   />
@@ -98,7 +98,7 @@ function RegisterBlock() {
                 <GridItem md={8} lg={12}>
                   <Input
                     label={t("confirm_password")}
-                    type="text"
+                    type="password"
                     register={register("confirmPassword")}
                     errors={errors.confirmPassword}
                   />

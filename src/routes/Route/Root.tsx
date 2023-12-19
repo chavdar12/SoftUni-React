@@ -12,6 +12,7 @@ import {
   AdminDashboardPage,
   AdminLoginPage,
   AdminUsersPage,
+  CheckoutPage,
 } from "#pages";
 
 const RootContext = React.createContext({});
@@ -48,6 +49,7 @@ export function Root() {
         />
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route path="/admin-users" element={<AdminUsersPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </RootContext.Provider>
   );

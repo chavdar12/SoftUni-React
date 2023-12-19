@@ -64,6 +64,7 @@ function ShopBlock() {
               {filteredProducts.map((product) => (
                 <GridItem md={4} lg={4} key={product.id}>
                   <ProductCard
+                    t={t}
                     product={product}
                     onClick={() => {
                       navigate(`/product/${encodeURIComponent(product.id!)}`);

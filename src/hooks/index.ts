@@ -7,3 +7,5 @@ export { default as useGetCategories } from "./useGetCategories";
 export { default as useGetProductById } from "./useGetProductById";
 export { default as useUserRole } from "./useUserRole";
 export { default as useGetAllUsers } from "./useGetAllUsers";
+export { default as useUpdateProductQuantities } from "./useUpdateProductQuantities";
+export { default as useCreateOrder } from "./useCreateOrder";

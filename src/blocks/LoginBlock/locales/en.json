@@ -3,5 +3,7 @@
   "password": "Password",
   "email_error": "Email is required",
   "password_error": "Password is required",
-  "submit": "Login"
+  "submit": "Login",
+  "login": "Login",
+  "admin_login": "Admin Login"
 }

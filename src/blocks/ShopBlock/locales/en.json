@@ -1,13 +1,7 @@
 {
-  "first_name": "First Name",
-  "last_name": "Last Name",
-  "email": "Email",
-  "password": "Password",
-  "confirm_password": "Confirm Password",
-  "submit": "Register",
-  "firstName_error": "First Name is required",
-  "lastName_error": "Last Name is required",
-  "email_error": "Email is required",
-  "password_error": "Password is required",
-  "confirmPassword_error": "Confirm Password is required"
+  "price": "Price",
+  "description": "Description",
+  "more_info": "More Info",
+  "categories": "Categories",
+  "products": "Products"
 }

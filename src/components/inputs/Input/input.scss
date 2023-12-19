@@ -33,6 +33,27 @@
     }
   }
 
+  &__password-icon {
+    cursor: pointer;
+    margin-left: 0.8rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8rem;
+    background: $color_blue_21;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: $color_blue_17;
+    }
+
+    &.active {
+      background: $color_blue_17;
+    }
+  }
+
   &__label {
     display: block;
     font-weight: $font_bold;

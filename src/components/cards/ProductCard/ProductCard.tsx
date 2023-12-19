@@ -1,4 +1,4 @@
-import { Button, Carousel, Grid, GridItem } from "#components";
+import { Box, Button, Carousel, Grid, GridItem } from "#components";
 import { Product } from "#types";
 import "./product-card.scss";
 
@@ -6,9 +6,10 @@ interface ProductProps {
   product: Product;
   classes?: string;
   onClick?: () => void;
+  t: (text: string) => string;
 }
 
-function ProductCard({ product, classes, onClick }: ProductProps) {
+function ProductCard({ product, classes, onClick, t }: ProductProps) {
   return (
     <div className={["product-card", classes].join(" ")} onClick={onClick}>
       <Grid>
@@ -29,17 +30,25 @@ function ProductCard({ product, classes, onClick }: ProductProps) {
           </Carousel>
         </GridItem>
         <GridItem md={8} lg={12}>
-          <h2 className="product-card__name">{product.name}</h2>
+          <h1 className="product-card__name">{product.name}</h1>
         </GridItem>
         <GridItem md={8} lg={12}>
-          <h4 className="product-card__price">{product.price}</h4>
+          <div className="product-card__price">
+            <p className="product-card__price__heading">{t("price")}</p>
+            <p>{product.price}</p>
+          </div>
         </GridItem>
         <GridItem md={8} lg={12}>
-          <p className="product-card__description">{product.description}</p>
+          <div className="product-card__description">
+            <p className="product-card__description__heading">
+              {t("description")}
+            </p>
+            <p>{product?.description}</p>
+          </div>
         </GridItem>
         <GridItem md={8} lg={12} classes="product-card__button">
           <Button
-            text="More info"
+            text={t("more_info")}
             classes="product-card__button"
             onClick={() => {
               console.log("clicked");

@@ -4,3 +4,7 @@ export * as RegisterBlockLocales from "./RegisterBlock/locales";
 export * as UserProfileBlockLocales from "./UserProfileBlock/locales";
 export * as AddProductBlockLocales from "./AddProductBlock/locales";
 export * as ProductBlockLocales from "./ProductBlock/locales";
+export * as LandingBlockLocales from "./LandingBlock/locales";
+export * as ShopBlockLocales from "./ShopBlock/locales";
+export * as CartBlockLocales from "./CartBlock/locales";
+export * as CheckoutBlockLocales from "./CheckoutBlock/locales";

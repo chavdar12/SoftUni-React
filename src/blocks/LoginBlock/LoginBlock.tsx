@@ -48,7 +48,7 @@ function LoginBlock({ isAdminLogin = false }: LoginBlockProps) {
       <Grid>
         <GridItem md={8} lg={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Box heading={t("Login")}>
+            <Box heading={isAdminLogin ? t("admin_login") : t("login")}>
               <Grid>
                 <GridItem md={8} lg={12}>
                   <Input

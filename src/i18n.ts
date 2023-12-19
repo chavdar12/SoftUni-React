@@ -8,6 +8,10 @@ import {
   UserProfileBlockLocales,
   AddProductBlockLocales,
   ProductBlockLocales,
+  LandingBlockLocales,
+  ShopBlockLocales,
+  CartBlockLocales,
+  CheckoutBlockLocales,
 } from "#blocks-locales";
 
 const resources = {
@@ -18,6 +22,10 @@ const resources = {
     "user-profile-block": UserProfileBlockLocales.bg,
     "add-product-block": AddProductBlockLocales.bg,
     "product-block": ProductBlockLocales.bg,
+    "landing-block": LandingBlockLocales.bg,
+    "shop-block": ShopBlockLocales.bg,
+    "cart-block": CartBlockLocales.bg,
+    "checkout-block": CheckoutBlockLocales.bg,
   },
   en: {
     "page-block": PageBlockLocales.en,
@@ -26,6 +34,10 @@ const resources = {
     "user-profile-block": UserProfileBlockLocales.en,
     "add-product-block": AddProductBlockLocales.en,
     "product-block": ProductBlockLocales.en,
+    "landing-block": LandingBlockLocales.en,
+    "shop-block": ShopBlockLocales.en,
+    "cart-block": CartBlockLocales.en,
+    "checkout-block": CheckoutBlockLocales.en,
   },
 };
 

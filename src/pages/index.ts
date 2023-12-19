@@ -9,3 +9,4 @@ export * from "./ShopPage";
 export * from "./AdminDashboardPage";
 export * from "./AdminLoginPage";
 export * from "./AdminUsersPage";
+export * from "./CheckoutPage";
